@@ -11,13 +11,15 @@ const initiate = async () => {
   });
 
   lineReader.on('line', async function (line) {
-    let articleURL = await fetch(encodeURI(line));
+    let encodedURL = encodeURI(line)
+    let articleURL = await fetch(encodedURL);
+    
     if (articleURL.status == 200) {
-      console.log('Success: ' + encodeURI(line));
-      SuccessWriteStream.write(encodeURI(line) + '\n');
+      console.log('Success: ' + encodedURL);
+      SuccessWriteStream.write(encodedURL + '\n');
     } else {
-      console.log('Failure: ' + encodeURI(line));
-      FailureWriteStream.write(encodeURI(line) + '\n');
+      console.log('Failure: ' + encodedURL);
+      FailureWriteStream.write(encodedURL + '\n');
     }
   });
 };
