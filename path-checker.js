@@ -13,7 +13,7 @@ const initiate = async () => {
   lineReader.on('line', async function (line) {
     let encodedURL = encodeURI(line)
     let articleURL = await fetch(encodedURL);
-    
+
     if (articleURL.status == 200) {
       console.log('Success: ' + encodedURL);
       SuccessWriteStream.write(encodedURL + '\n');
