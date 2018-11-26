@@ -5,7 +5,7 @@
 The purpose of this simple repo is to check if a list of URLs in a provided folder are 200s or not.
 This is useful if you mined a set of URLs for a sitemap but need to make sure that the results provides a 202 response, as opposed to 404s, 301s, 500s, etc.
 
-## Install
+## Installation and Usage
 
 To install this repo, simply clone it and you should be good. The code is quite simple.
 As long as you paste your URLs into the `paths.yml` file, it will work when you run `node url-checker.js` in your terminal.
@@ -18,8 +18,8 @@ www.example2.com
 www.example3.com/this-does-not-exist
 ```
 
-The results will show in the terminal. Support for a printed file will eventually be added.
+The failing results will be added to `failure.yml`, while the succeeding results will be added to `success.yml`
 
 ## Development
 
-Feel free to contribute and make this more robust! This was a very scrappy project to check if a set of URLs were good. 
+Feel free to contribute and make this more robust! This was a very scrappy project to check if a set of URLs were good.
