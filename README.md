@@ -8,11 +8,23 @@ This is useful if you mined a set of URLs for a sitemap but need to make sure th
 ## Installation and Usage
 
 To install this repo, simply clone it and you should be good. The code is quite simple.
-As long as you paste your URLs into the `paths.yml` file, it will work when you run `node url-checker.js` in your terminal.
+
+1- Write your URLs files in a file.
+The app will use `paths.yml` file as a default. Unless, you specify another file.
+
+In path-checker.js file, pass the file name to initiate();
+
+```js
+initiate(fileName);
+```
+
+2- run `node path-checker.js` in your terminal.
+
+---
 
 Please note that `paths.yml` requires a very specific format:
 
-``` yml
+```yml
 www.example1.com
 www.example2.com
 www.example3.com/this-does-not-exist
