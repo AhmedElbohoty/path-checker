@@ -1,5 +1,5 @@
 const fs = require("fs"); // Allows for writing and reading to a file
-const readline = require("readline"); // Read each line of file
+const readline = require("line-by-line"); // Read each line of file
 const fetch = require("isomorphic-unfetch"); // used to fetch API and test if links are giving 200s
 
 let SuccessWriteStream = fs.createWriteStream("success.yml");
@@ -20,11 +20,22 @@ const initiate = async fileName => {
     return;
   }
 
-  let lineReader = readline.createInterface({
-    input: fs.createReadStream(fileName)
-  });
+  let lineReader = new readline(fileName);
+  let batchLines = 0;
 
   lineReader.on("line", async function(line) {
+    batchLines++;
+
+    if (batchLines >= 100) {
+      lineReader.pause();
+      console.log("Giving the sockets a rest before continuing!");
+
+      setTimeout(function () {
+        lineReader.resume();
+        batchLines = 0;
+      }, 10000);
+    }
+
     let encodedURL = encodeURI(line);
     let articleURL = await fetch(encodedURL);
 
@@ -35,6 +46,10 @@ const initiate = async fileName => {
       console.log("Failure: " + encodedURL);
       FailureWriteStream.write(encodedURL + "\n");
     }
+  });
+
+  lineReader.on('end', function () {
+    console.log("Done");
   });
 };
 

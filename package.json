@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "isomorphic-unfetch": "^3.0.0"
+    "isomorphic-unfetch": "^3.0.0",
+    "line-by-line": "^0.1.6"
   },
   "dependencies": {
     "fs": "0.0.1-security"
